@@ -7,7 +7,7 @@ export default class TodoEditor extends Component {
 
 
 
-  handleChange = () => {
+  handleChange = (e) => {
     e.preventDefault();
     this.setState({textValue: e.target.value})
   }
