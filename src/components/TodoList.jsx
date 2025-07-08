@@ -1,16 +1,13 @@
 import { Component } from "react";
+import TodoItem from "./TodoItem";
 
 export default class TodoList extends Component {
   render() {
-    const { todos } = this.props;
+    const { todos, onToggleCompleted } = this.props;
     return (
       <div className="todo-list">
         {todos.map(({ id, text, completed }) => (
-          <div key={id} className={`todo-item ${completed ? "completed" : ""}`}>
-            <input type="checkbox" checked={completed}  />
-            <span>{text}</span>
-            <button className="delete-button">Delete</button>
-          </div>
+          <TodoItem key={id} id={id} text={text} completed={completed} onToggleCompleted={onToggleCompleted}/>
         ))}
       </div>
     );

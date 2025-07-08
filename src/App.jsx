@@ -20,11 +20,17 @@ class App extends Component {
       todos: [...prevState.todos, newTodo]
     }))
   }
+
+  onToggleCompleted = (id) => {
+    this.setState((prevState => ({
+      todos: prevState.todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo)
+    })))
+  }
   render() {
     return (
       <>
         <TodoEditor onSubmit={this.addTodo}/>
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} onToggleCompleted={this.onToggleCompleted}/>
       </>
     );
   }
