@@ -26,11 +26,16 @@ class App extends Component {
       todos: prevState.todos.map(todo => todo.id === id ? {...todo, completed: !todo.completed} : todo)
     })))
   }
+  onDelete = (id) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.filter(todo => todo.id !== id)
+    }))
+  }
   render() {
     return (
       <>
         <TodoEditor onSubmit={this.addTodo}/>
-        <TodoList todos={this.state.todos} onToggleCompleted={this.onToggleCompleted}/>
+        <TodoList todos={this.state.todos} onToggleCompleted={this.onToggleCompleted} onDelete={this.onDelete}/>
       </>
     );
   }
