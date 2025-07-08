@@ -9,10 +9,21 @@ class App extends Component {
     todos: initialTodos,
     filter: "",
   };
+
+  addTodo = (text) => {
+    const newTodo = {
+      id: crypto.randomUUID(),
+      text,
+      completed: false,
+    }
+    this.setState((prevState) => ({
+      todos: [...prevState.todos, newTodo]
+    }))
+  }
   render() {
     return (
       <>
-        <TodoEditor/>
+        <TodoEditor onSubmit={this.addTodo}/>
         <TodoList todos={this.state.todos} />
       </>
     );
