@@ -4,6 +4,7 @@ import initialTodos from "./todo.json";
 import { Component } from "react";
 import TodoEditor from "./components/TodoEditor.jsx";
 import Filter from "./components/Filter.jsx";
+import Info from "./components/Info.jsx";
 
 export default class App extends Component {
   state = {
@@ -48,14 +49,14 @@ export default class App extends Component {
   render() {
     return (
       <>
+        <Info todosInfo={this.state.todos} />
         <TodoEditor onSubmit={this.addTodo} />
+        <Filter onFilterChange={this.handleFilter} value={this.state.filter} />
         <TodoList
-          todos={this.state.todos}
+          todos={this.getFilteredTodos()}
           onToggleCompleted={this.onToggleCompleted}
           onDelete={this.onDelete}
         />
-
-        <Filter onFilterChange={this.handleFilter} value={this.state.filter} />
       </>
     );
   }
